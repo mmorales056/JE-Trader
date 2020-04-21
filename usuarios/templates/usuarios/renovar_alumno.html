@@ -1,0 +1,25 @@
+<div class="container">
+    <form action="{% url 'usuarios:activar_alumno' %}" method="POST">
+        {% csrf_token %}
+    <div class="form-row">
+            <div class="col-4 form-group" style="text-align: center;">
+                <label for="exampleInputEmail1" >Fecha Ingreso</label>
+                <input type="date" class="form-control" id="exampleInputEmail1" name="fecha_inicio" aria-describedby="emailHelp" name="fecha_inicio">
+            </div>
+            
+            <div class="col-4 form-group mt-2" >
+                <label for=""></label>
+                <input type="number" class="form-control" id="exampleInputEmail1" name="meses" aria-describedby="emailHelp" placeholder="Meses" min="1" max="8" name="meses">
+            </div>
+            <div class="d-none">
+                <input type="hidden" name="id" value="{{a.id}}">
+            </div>
+            <div class="col-2 form-group mt-2">
+                <label for=""></label>
+                <input type="submit" value="Renovar" class="btn btn-success form-control">
+            </div>            
+        </div>
+        
+</form>
+
+</div>

@@ -1,0 +1,132 @@
+{% extends "usuarios/base.html" %}
+{% load static %}
+
+{% block titulo %}Nuevo Reporte{% endblock titulo %}
+
+{% block body%} <body > {% endblock %}
+{% block contenido %}
+
+<div class="container-fluid">
+
+    <div class="row">
+        <div class="col-6">
+            <h3>Nuevo Reporte</h3>
+            <hr>
+            <form action="{% url 'usuarios:guardar_reporte' %}" method="post">
+                {% csrf_token %}
+                <div class="form-row">
+                    <div class="col-4">
+                        <input type="date" id="fecha" name="fecha" class="form-control">
+                    </div>
+                    <div class="col-4 mt-2" >
+                        <span><input type="radio" id="dia" name="sesion" value="dia">
+                        <label for="dia">Día</label></span> <span> <input type="radio" id="noche" name="sesion" value="noche">
+                            <label for="noche">Noche</label><br></span>
+                    </div>                   
+                    
+                </div>
+                <hr>
+                <div class="form-row">
+                    <div class="col-3 mt-2">
+                            <span><input type="radio" id="ganada" name="ope" value="ganada">
+                            <label for="ganada">Ganada</label> </span> <span> <input type="radio" id="perdida" name="ope" value="perdida">
+                            <label for="perdida">Perdida</label><br></span>                       
+                    </div>
+                    <div class="col-3">
+                        <input type="text" id="divisa" name="divisa" class="form-control" placeholder="divisa" min="0">    
+                    </div>
+                    <div class="col-3">
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                              <span class="input-group-text">$</span>
+                            </div>                            
+                            <input type="number" id="inversion" name="inversion" class="form-control" placeholder="Importe" min="0" aria-label="Amount (to the nearest dollar)">                                
+                          </div>
+                    </div>
+                    <div class="col-3">
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                              <span class="input-group-text">%</span>
+                            </div>                                
+                            <input type="number" id="profit" name="profit" class="form-control" placeholder="Profit" min="0" aria-label="Amount (to the nearest dollar)">
+                          </div>
+                    </div>
+                </div>
+                <hr>
+                <div class="form-row">
+                    <div class="col-2">
+                    <input type="submit" value="Guardar" class="btn btn-success">                        
+                    </div>
+                </div>
+
+
+
+            </form>
+        </div>
+    </div>
+
+
+<div class="row">
+
+    <div class="col-6">
+        <h4 style="text-align: center; color: green;">Sesion Día</h4>
+        <table class="table">
+                <thead>
+                    <th>Fecha </th>
+                    <th>Divisa </th>
+                    <th>Importe</th>
+                    <th>Profit</th>
+                    <th>Estado</th>
+                    <th>Total </th>
+                </thead>
+                {% for dia in dia %}
+                <tbody>
+                    <tr {% if dia.estado  %} class="bg-success"{% else %} class="bg-danger"{% endif %} style="color: white;">
+                        <td>{{dia.fecha}}</td>
+                        <td>{{dia.divisa}}</td>
+                        <td>{{dia.inversion}}</td>
+                        <td>{{dia.profit}}</td>
+                        <td> {% if dia.estado  %} Ganada {% else %} perdida {%endif%} </td>
+                        <td>{{dia.total}}</td>
+                    </tr>
+                </tbody>
+                {%endfor%}
+            </table>
+            
+        </div>
+
+
+        <div class="col-6">
+            <h4 style="text-align: center; color: green;">Sesion Noche</h4>
+            <table class="table">
+                <thead>
+                    <th>Fecha </th>
+                    <th>Divisa </th>
+                    <th>Importe</th>
+                    <th>Profit</th>
+                    <th>Estado</th>
+                    <th>Total </th>
+                </thead>
+                <tbody>
+                    {% for noche in noche %}
+                    <tr {% if noche.estado  %} class="bg-success"{% else %} class="bg-danger"{% endif %} style="color: white;">
+                        <td>{{noche.fecha}}</td>
+                        <td>{{noche.divisa}}</td>
+                        <td>{{noche.inversion}}</td>
+                        <td>{{noche.profit}}</td>
+                        <td>{% if noche.estado %} Ganada {% else %} Perdida {%endif%}</td>
+                        <td>{{noche.total}}</td>
+                        {%endfor%}
+                    </tr>
+                </tbody>
+            </table>            
+        </div>
+
+    </div>
+
+</div>
+
+
+
+
+{% endblock %}

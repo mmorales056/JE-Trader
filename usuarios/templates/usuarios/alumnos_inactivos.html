@@ -1,0 +1,84 @@
+{% extends "usuarios/base.html" %}
+{% load static %}
+
+{% block titulo %}JE. TRADER{% endblock titulo %}
+
+{% block body%} <body > {% endblock %}
+{% block contenido %}
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <table class="table table-hover alumnos compact">
+                <h3 style="text-align: center;">Alumnos</h3>
+                <thead>
+                    <td>#</td>
+                    <td>Nombre</td>
+                    <td>Celular</td>
+                    <td>Fecha Ingreso</td>
+                    <td>Fecha Expiración</td>
+                    <td></td>
+                    <td></td>
+                </thead>
+                <tbody>
+                    {% for a in a %}
+                    
+                    <tr>
+                    <td class="item">{{ forloop.counter }}</td>
+                    <td class="nombre">{{a.nombre}} {{a.apellido}} </td>
+                    <td class="celular">{{a.celular}}</td>
+                    <td class="fechaInicio">{{a.fecha_inicio}}</td>
+                    <td class="fechaFin">{{a.fecha_fin}}</td>
+                    <td>
+                        <a onclick="form_renovar_alumno('{% url 'usuarios:renovar_alumno' a.id %}')" data-toggle="modal" data-target=".bd-example-modal-lg"><i class="fas fa-retweet"></i>
+
+                        </a>                        
+                    </td>
+                    <td class="d-none"></td>
+                </tr>
+                    {%endfor%}
+                </tbody>
+                
+            </table>
+            <button onclick="formulario_alumno('{% url 'usuarios:nuevoalumno' %}')"data-toggle="modal" data-target=".bd-example-modal-lg" class="btn btn-primary" > Nuevo Alumno</button>
+        </div>
+
+    </div>
+</div>
+
+<!-- Large modal -->
+<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content" id="config_alumno">
+      ...
+    </div>
+  </div>
+</div>
+
+  
+
+<!--Modal: modalCookie-->
+<div class="modal fade top" id="modal_alumno" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+  aria-hidden="true" data-backdrop="true">
+  <div class="modal-dialog  modal-lg  modal-frame modal-top modal-notify modal-info modal-dialog-centered" role="document">
+    <!--Content-->
+    <div class="modal-content">
+      <!--Body-->
+      <div class="modal-body">
+        <div class="row d-flex justify-content-center align-items-center">
+            <div class="col-4">
+                <input type="number"  id="meses" required class="form-control" placeholder="Meses" min="1" max="12">          
+            </div>
+            <div class="col-4">
+                <button class=" btn btn-success" id="renovar">Renovar</button>
+            </div>
+            <div class="col-4">
+                <button class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+            </div>
+          
+        </div>
+      </div>
+    </div>
+  
+
+
+{% endblock %}

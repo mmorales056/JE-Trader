@@ -1,0 +1,38 @@
+    <div class="container">
+        <form action="{% url 'usuarios:guardaralumno' %}" method="post">
+        {% csrf_token %}
+            <div class="form-row">
+                <div class="col-6 form-group mt-2">
+                    <label for="exampleInputEmail1"></label>
+                    <input type="text" class="form-control" id="exampleInputEmail1" name="nombre" aria-describedby="emailHelp" placeholder=Nombre>
+                </div>
+                <div class="col-6 form-group mt-2" >
+                    <label for="exampleInputEmail1"></label>
+                    <input type="text" class="form-control" id="exampleInputEmail1" name="apellido" aria-describedby="emailHelp" placeholder="Apellido">
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="col-5 form-group mt-2">
+                    <label for="exampleInputEmail1 "></label>
+                    <input type="text" class="form-control" id="exampleInputEmail1" name="celular" aria-describedby="emailHelp" placeholder=Celular>
+                </div>
+                <div class="col-5 form-group" style="text-align: center;">
+                    <label for="exampleInputEmail1">Fecha Ingreso</label>
+                    <input type="date" class="form-control" id="exampleInputEmail1" name="fechaInicio" aria-describedby="emailHelp">
+                </div>
+                <div class="col-2 form-group mt-2" >
+                    <label for="exampleInputEmail1"></label>
+                    <input type="number" class="form-control" id="exampleInputEmail1" name="meses" aria-describedby="emailHelp" placeholder="Meses" min="1" max="12">
+                </div>
+            </div>
+            <div class="form-row">
+                
+            </div>
+            <div class="form-row">
+                <div class="col-5 form-group">
+                    <input type="submit" value="Guardar" class="btn btn-success">
+                </div>
+            </div>
+        </form>
+    </div>
+        
